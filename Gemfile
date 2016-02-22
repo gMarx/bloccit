@@ -18,8 +18,6 @@ group :development do
 end
 
 group :development, :test do
-  # sqlite3 is easy to use db, perfect for local env usage.
-  gem 'sqlite3'
 #   RSPEC for testing
   gem 'rspec-rails', '~> 3.0'
 #   NyanCat, for fun!
