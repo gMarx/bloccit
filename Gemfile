@@ -22,6 +22,8 @@ group :development, :test do
   gem 'sqlite3'
 #   RSPEC for testing
   gem 'rspec-rails', '~> 3.0'
+#   NyanCat, for fun!
+  gem 'nyan-cat-formatter'
 end
 
 # Use SCSS for stylesheets
