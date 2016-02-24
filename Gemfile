@@ -15,6 +15,8 @@ end
 group :development do
   # sqlite3 is easy to use db, perfect for local env usage.
   gem 'sqlite3'
+  # add ap for terminal use (upgrade to pp)
+  gem 'awesome_print', :require => 'ap'
 end
 
 group :development, :test do
