@@ -17,6 +17,8 @@ group :development do
   gem 'sqlite3'
   # add ap for terminal use (upgrade to pp)
   gem 'awesome_print', :require => 'ap'
+#   pry for testing
+  gem 'pry-rails'
 end
 
 group :development, :test do
