@@ -2,3 +2,9 @@
 <p><%= @post.body %></p>
 
 <%= params %>
+
+<div class='container'>
+  <ul class="nav nav-tabs">
+    <%= link_to 'Back to Posts', posts_path, class: 'pull-right' %>
+  </ul>
+</div>
