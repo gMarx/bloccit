@@ -1,2 +1,27 @@
-<h1>Posts#new</h1>
-<p>Find me in app/views/posts/new.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <p>Posts Etiquette</p>
+    <ul>
+      <li>Make sure it rhymes</li>
+      <li>Don't use the letter 'A'</li>
+      <li>Use of Hashtags strictly forbidden</li>
+    </ul>
+    </div>
+
+  <div class="col-md-8">
+    <%= form_for @post do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+
+        <%= f.label :body %>
+        <%= f.text_field :body  %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Save' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
