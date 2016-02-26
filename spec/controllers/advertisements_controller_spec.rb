@@ -50,15 +50,38 @@ RSpec.describe AdvertisementsController, :type => :controller do
     end
   end
 
-  describe 'GET #edit' do
+  describe 'GET #create' do
+    #
+    #
+    #
+    # these are failing, need to add function to fix
+    it 'increases the number of Post by 1' do
+      expect{post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 10}}.to change(Advertisement,:count).by(1)
+    end
+
+    it 'assigns the new post to @post' do
+      post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 10}
+      expect(assigns(:advertisement)).to eq Advertisement.last
+    end
+
+    it 'redirects to the new post' do
+      post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: 10}
+      expect(response).to redirect_to Advertisement.last
+    end
+    # end failing specs
+    #
+    #
+    #
+
+
     it 'returns http success' do
-      get :edit, {id: my_ad.id}
+      get :create, {id: my_ad.id}
       expect(response).to have_http_status(:success)
     end
 
-    it 'renders #edit view' do
-      get :edit, {id: my_ad.id}
-      expect(response).to render_template(:edit)
+    it 'renders #create view' do
+      get :create, {id: my_ad.id}
+      expect(response).to render_template(:create)
     end
   end
 
