@@ -26,6 +26,19 @@ Comment.find_or_create_by(
   body: 'That is where we are, ladies and gentlemen.'
 )
 
+####################################################
+
+20.times do
+  Advertisement.create!(
+    title: RandomData.random_word,
+    copy: RandomData.random_paragraph,
+    price: rand(1..55)
+  )
+  advertisements = Advertisement.all
+
+end
+
 puts 'Seed finished'
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Advertisement.count} advertisements created"
