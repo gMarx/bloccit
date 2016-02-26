@@ -1,2 +1,23 @@
-<h1>Advertisements#new</h1>
-<p>Find me in app/views/advertisements/new.html.erb</p>
+<div class="row">
+  <div class="col-md-4">
+    <p>Advertisements are created here</p>
+  </div>
+
+  <div class="col-md-8">
+    <%= form_for @advertisement do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title  %>
+
+        <%= f.label :copy %>
+        <%= f.text_field :copy %>
+
+        <%= f.label :price %>
+        <%= f.number_field :price %>
+      </div>
+      <div class="form-group">
+        <%= f.submit 'Save' %>
+      </div>
+    <% end %>
+  </div>
+</div>

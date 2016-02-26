@@ -1,2 +1,11 @@
-<h1>Advertisements#show</h1>
-<p>Find me in app/views/advertisements/show.html.erb</p>
+<h1><%= @advertisement.title %></h1>
+<p><%= @advertisement.copy %></p>
+<h3>$<%= @advertisement.price %></h3>
+
+<p>The params are: <%= params %></p>
+
+<div class='container'>
+  <ul class="nav nav-tabs">
+    <%= link_to 'Back to Ads', advertisements_path, class: 'pull-right' %>
+  </ul>
+</div>
