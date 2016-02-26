@@ -1,7 +1,8 @@
 require 'rails_helper'
+require 'random_data'
 
 RSpec.describe AdvertisementsController, :type => :controller do
-  let(:my_ad) { Advertisement.create!(title: 'Nyew Ad', copy: 'Advertisement copy', price: 10)}
+  let(:my_ad) { Advertisement.create!(title: RandomData.random_word, copy: RandomData.random_sentence, price: 10)}
 
   describe 'GET #index' do
     it 'returns http success' do
@@ -12,6 +13,11 @@ RSpec.describe AdvertisementsController, :type => :controller do
     it 'renders the #index view' do
       get :index
       expect(response).to render_template :index
+    end
+
+    it 'renders my_ad' do
+      get :index, {id: my_ad.id}
+      expect(assigns[:advertisements]).to eq([my_ad])
     end
   end
 
@@ -24,6 +30,11 @@ RSpec.describe AdvertisementsController, :type => :controller do
     it 'renders #show view' do
       get :show, {id: my_ad.id}
       expect(response).to render_template(:show)
+    end
+
+    it 'shows my_ad' do
+      get :show, {id: my_ad.id}
+      expect(assigns(:advertisement)).to eq(my_ad)
     end
   end
 
