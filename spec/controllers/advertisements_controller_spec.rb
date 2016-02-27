@@ -52,7 +52,7 @@ RSpec.describe AdvertisementsController, :type => :controller do
     end
   end
 
-  describe 'GET #create' do
+  describe 'POST #create' do
     let(:new_ad) { Advertisement.create!(title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10))}
 
     it 'increases the number of Post by 1' do
@@ -63,20 +63,13 @@ RSpec.describe AdvertisementsController, :type => :controller do
       expect(assigns(:new_ad)).to eq Advertisement.last
     end
 
-    #
-    #
-    #
-    # this is failing, need to get to pass
     it 'redirects to the new post' do
-      Advertisement.create!(title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10))
+      # Advertisement.create!(title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10))
+      # same as :
+      post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10)}
 
       expect(response).to redirect_to Advertisement.last
     end
-    # end failing specs
-    #
-    #
-    #
-
   end
 
 end

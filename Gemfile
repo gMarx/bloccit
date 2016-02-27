@@ -17,8 +17,6 @@ group :development do
   gem 'sqlite3'
   # add ap for terminal use (upgrade to pp)
   gem 'awesome_print', :require => 'ap'
-#   pry for testing
-  gem 'pry-rails'
 end
 
 group :development, :test do
@@ -26,6 +24,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 #   NyanCat, for fun!
   gem 'nyan-cat-formatter'
+#   pry for testing
+  gem 'pry-rails'
 end
 
 # Use SCSS for stylesheets
