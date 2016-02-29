@@ -34,11 +34,23 @@ Comment.find_or_create_by(
     copy: RandomData.random_paragraph,
     price: rand(1..55)
   )
-  advertisements = Advertisement.all
+  # advertisements = Advertisement.all
 
 end
 
+####################################################
+
+30.times do
+  Question.create!(
+    title: RandomData.random_word,
+    body: RandomData.random_paragraph,
+    resolved: false
+  )
+end
+
+####################################################
 puts 'Seed finished'
-puts "#{Post.count} posts created"
-puts "#{Comment.count} comments created"
-puts "#{Advertisement.count} advertisements created"
+puts "#{Question.count} questions created."
+puts "#{Post.count} posts created."
+puts "#{Comment.count} comments created."
+puts "#{Advertisement.count} advertisements created."
