@@ -1,2 +1,12 @@
-<h1>Questions#show</h1>
-<p>Find me in app/views/questions/show.html.erb</p>
+<h1><%= @question.title %></h1>
+<h4>Question is <%= @question.resolved ? 'Resolved' : 'Unresolved' %></h4>
+<p><%= @question.body %></p>
+
+
+<div class="container">
+  <div class="nav nav-tabs">
+    <%= link_to 'Back to Questions', questions_path %>
+    <%= link_to 'Delete Question', @question, method: :delete, class: 'pull-right btn btn-danger', data: {confirm: 'Are you certain you\'d like to delete this question?'} %>
+    <%= link_to 'Edit', edit_question_path, class: 'btn btn-info pull-right' %>
+  </div>
+</div>

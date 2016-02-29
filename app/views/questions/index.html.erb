@@ -1,2 +1,17 @@
-<h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
+<h1>All Questions</h1>
+<p>These are the questions posted</p>
+<div class="container">
+  <ul class="nav nav-tabs">
+    <li class="pull-right"><%= link_to 'Ask a Question', new_question_path, class: 'btn btn-primary' %></li>
+  </ul>
+</div>
+
+<% @questions.each do |question| %>
+  <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to question.title, question %>
+      </h4>
+    </div>
+  </div>
+<% end %>

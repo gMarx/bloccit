@@ -1,2 +1,24 @@
-<h1>Questions#new</h1>
-<p>Find me in app/views/questions/new.html.erb</p>
+<div class="row">
+  <h1>New Questions</h1>
+  <p>Please ask relevant questions with a respectful tone</p>
+
+  <div class="col-md-8">
+    <%= form_for @question do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+
+        <%= f.label :body %>
+        <%= f.text_field :body %>
+
+        <%= f.label :resolved %>
+        <%= f.check_box :resolved %>
+      </div>
+
+      <div class="form-field">
+        <%= f.submit 'Save', class: 'btn btn-success' %>
+        <%= link_to 'Cancel', questions_path, class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+</div>
