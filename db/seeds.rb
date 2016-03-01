@@ -1,9 +1,21 @@
 require 'random_data'
 
+
+# Create Topics
+15.times do
+  Topic.create!(
+    name: RandomData.random_word,
+    description: RandomData.random_paragraph
+  )
+end
+topics = Topic.all
+
+# Create Posts
 50.times do
   Post.create!(
     title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    body: RandomData.random_paragraph,
+    topic: topics.sample
   )
 end
 
@@ -50,6 +62,7 @@ end
 
 ####################################################
 puts 'Seed finished'
+puts "#{Topic.count} Topics created."
 puts "#{Question.count} questions created."
 puts "#{Post.count} posts created."
 puts "#{Comment.count} comments created."
