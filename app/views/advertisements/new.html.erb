@@ -8,10 +8,12 @@
       <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title  %>
-
+      </div>
+      <div class="form-group">
         <%= f.label :copy %>
-        <%= f.text_field :copy %>
-
+        <%= f.text_area :copy, rows: 8, class: 'form-control', placeholder: 'Enter your copy...' %>
+      </div>
+      <div class="form-group">
         <%= f.label :price %>
         <%= f.number_field :price %>
       </div>
