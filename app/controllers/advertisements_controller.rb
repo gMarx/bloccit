@@ -11,7 +11,7 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new
   end
 
-  def create
+  def edit
     @advertisement = Advertisement.new
 
     @advertisement.title = params[:advertisement][:title]
