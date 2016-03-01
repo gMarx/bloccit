@@ -1,11 +1,15 @@
 <h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
 
-<%= params %>
+<div class="row">
+  <div class="col-md-8">
+    <p><%= @post.body %></p>
+  </div>
+  <div class="col-md-4">
+    <ul class="nav nav-tabs">
+      <li><%= link_to 'Edit', edit_topic_post_path(@post.topic, @post), class: 'btn btn-success' %></li>
 
-<div class='container'>
-  <ul class="nav nav-tabs">
-    <%= link_to 'Back to Posts', posts_path, class: 'pull-right' %>
-    <%= link_to 'Delete Post', @post, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this post?'} %>
-  </ul>
+      <li><%= link_to 'Back to Topics', @post.topic, class: 'pull-right' %></li>
+      <li><%= link_to 'Delete Post', [@post.topic], method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this post?'} %></li>
+    </ul>
+  </div>
 </div>
