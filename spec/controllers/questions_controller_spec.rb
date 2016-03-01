@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'random_data'
 
 RSpec.describe QuestionsController, :type => :controller do
-let(:my_question) {Question.create!(title: RandomData.random_word, body: RandomData.random_paragraph, resolved: false)}
+  let!(:my_question) {Question.create!(title: RandomData.random_word, body: RandomData.random_paragraph, resolved: false)}
 
   describe 'GET index' do
     it 'returns http success' do
@@ -11,7 +11,7 @@ let(:my_question) {Question.create!(title: RandomData.random_word, body: RandomD
     end
 
     it 'assigns [my_question] to @questions' do
-      get :index, {id: my_question.id}
+      get :index
       expect(assigns[:questions]).to eq([my_question])
     end
   end
@@ -88,6 +88,9 @@ let(:my_question) {Question.create!(title: RandomData.random_word, body: RandomD
   end
 
   describe 'PUT update' do
+
+    let!(:new_title) { "Asdfsdaf"}
+
     it 'updates question with expected attributes' do
       new_title = RandomData.random_word
       new_body = RandomData.random_paragraph
@@ -110,16 +113,24 @@ let(:my_question) {Question.create!(title: RandomData.random_word, body: RandomD
   end
 
   describe 'DELETE destroy' do
-    it 'deletes the question' do
+    def do_it
       delete :destroy, {id: my_question.id}
+    end
+
+    it 'deletes the question' do
+      do_it
       count = Question.where({id: my_question.id}).size
       expect(count).to eq(0)
     end
 
     it 'redirects to questions index' do
-      delete :destroy, {id: my_question.id}
+      do_it
       expect(response).to redirect_to questions_path
     end
   end
+
+  ## GIVEN setup (background)
+  ## WHEN do it
+  ## THEN expectations
 
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'random_data'
 
 RSpec.describe AdvertisementsController, :type => :controller do
-  let(:my_ad) { Advertisement.create!(title: RandomData.random_word, copy: RandomData.random_sentence, price: rand(1..10))}
+  let!(:my_ad) { Advertisement.create!(title: RandomData.random_word, copy: RandomData.random_sentence, price: rand(1..10))}
 
   describe 'GET #index' do
     it 'returns http success' do
@@ -15,10 +15,8 @@ RSpec.describe AdvertisementsController, :type => :controller do
       expect(response).to render_template :index
     end
 
-    #
-    # is this test necessary?
     it 'renders my_ad' do
-      get :index, {id: my_ad.id}
+      get :index
       expect(assigns[:advertisements]).to eq([my_ad])
     end
   end
@@ -53,19 +51,19 @@ RSpec.describe AdvertisementsController, :type => :controller do
   end
 
   describe 'POST #create' do
-    let(:new_ad) { Advertisement.create!(title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10))}
 
     it 'increases the number of Post by 1' do
-      expect{new_ad}.to change(Advertisement, :count).by(1)
+      expect {
+        post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10)}
+      }.to change(Advertisement, :count).by(1)
     end
 
     it 'assigns the new advertisement to @advertisement' do
-      expect(assigns(:new_ad)).to eq Advertisement.last
+      post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10)}
+      expect(assigns(:advertisement)).to eq Advertisement.last
     end
 
     it 'redirects to the new post' do
-      # Advertisement.create!(title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10))
-      # same as :
       post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: rand(1..10)}
 
       expect(response).to redirect_to Advertisement.last
