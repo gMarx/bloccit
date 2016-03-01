@@ -22,6 +22,7 @@ end
 group :development, :test do
 #   RSPEC for testing
   gem 'rspec-rails', '~> 3.0'
+  gem 'shoulda'
 #   NyanCat, for fun!
   gem 'nyan-cat-formatter'
 #   pry for testing
