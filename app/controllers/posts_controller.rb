@@ -52,7 +52,5 @@ class PostsController < ApplicationController
       flash[:alert] = 'There was an error destroying the post. Please try again.'
       render :show
     end
-
-
   end
 end
