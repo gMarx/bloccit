@@ -4,14 +4,14 @@
 # incrementally modify your database, and then regenerate this schema definition.
 #
 # Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to edit the application database on another
+# database schema. If you need to create the application database on another
 # system, you should be using db:schema:load, not running all the migrations
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301045751) do
+ActiveRecord::Schema.define(version: 20160302020037) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20160301045751) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "sponsored_posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "price"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sponsored_posts", ["topic_id"], name: "index_sponsored_posts_on_topic_id"
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
