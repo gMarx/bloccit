@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def confirm
+    @user = User.new( params.require(:user).permit(:name, :email, :password, :password_confirmation) )
+  end
+
   def create
     @user = User.new
 
