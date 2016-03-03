@@ -1,7 +1,8 @@
 require 'rails_helper'
+require 'random_data'
 
 RSpec.describe Question, :type => :model do
-  let(:question) { Question.create!(title: 'New Question Title', body: 'New Question Body', resolved: false) }
+  let(:question) { Question.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, resolved: false) }
 
   describe 'attributes' do
     it 'responds to title' do

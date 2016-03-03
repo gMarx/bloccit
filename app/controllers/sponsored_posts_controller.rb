@@ -17,7 +17,7 @@ class SponsoredPostsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @sponsored_post.topic = @topic
 
-    if @sponsored_post.save!
+    if @sponsored_post.save
       flash[:notice] = 'SponsoredPost was saved.'
       redirect_to [@topic, @sponsored_post]
     else
@@ -41,7 +41,7 @@ class SponsoredPostsController < ApplicationController
       redirect_to [@sponsored_post.topic, @sponsored_post]
     else
       flash.now[:alert] = 'There was an error saving the Sponsored Post. Please try again.'
-      render :new
+      render :edit
     end
   end
 
