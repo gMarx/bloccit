@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'users/new'
+
+  get 'users/create'
+
   resources :questions
   resources :advertisements
   resources :topics do
@@ -7,7 +11,6 @@ Rails.application.routes.draw do
     resources :sponsored_posts, except: [:index]
   end
   resources :users, only: [:new, :create]
-
 
   root 'welcome#index'
   get 'about' => 'welcome#about'
