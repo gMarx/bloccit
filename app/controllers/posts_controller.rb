@@ -10,11 +10,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
     @topic = Topic.find(params[:topic_id])
-    @post.topic = @topic
+    @post = @topic.posts.build( params.require(:post).permit(:title, :body) )
 
     if @post.save
       flash[:notice] = 'Post was saved.'
@@ -30,11 +27,10 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.title = params[:post][:title]
-    @post.body = params[:post][:body]
 
-    if @post.save
+    @post = Post.find(params[:id])
+
+    if @post.update_attributes( params.require(:post).permit(:title, :body) )
       flash[:notice] = 'Post was updated'
       redirect_to [@post.topic, @post]
     else
@@ -45,6 +41,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+
     if @post.destroy
       flash[:notice] = "'#{@post.title}' was successfully destroyed"
       redirect_to @post.topic

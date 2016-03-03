@@ -9,13 +9,8 @@ class SponsoredPostsController < ApplicationController
   end
 
   def create
-    @sponsored_post = SponsoredPost.new
-    @sponsored_post.title = params[:sponsored_post][:title]
-    @sponsored_post.body = params[:sponsored_post][:body]
-    @sponsored_post.price = params[:sponsored_post][:price]
-
     @topic = Topic.find(params[:topic_id])
-    @sponsored_post.topic = @topic
+    @sponsored_post = @topic.sponsored_posts.build( params.require(:sponsored_post).permit(:title, :body, :price) )
 
     if @sponsored_post.save
       flash[:notice] = 'SponsoredPost was saved.'
@@ -32,11 +27,8 @@ class SponsoredPostsController < ApplicationController
 
   def update
     @sponsored_post = SponsoredPost.find(params[:id])
-    @sponsored_post.title = params[:sponsored_post][:title]
-    @sponsored_post.body = params[:sponsored_post][:body]
-    @sponsored_post.price = params[:sponsored_post][:price]
 
-    if @sponsored_post.save
+    if @sponsored_post.update_attributes( params.require(:sponsored_post).permit(:title, :body, :price))
       flash[:notice] = 'SponsoredPost was saved.'
       redirect_to [@sponsored_post.topic, @sponsored_post]
     else

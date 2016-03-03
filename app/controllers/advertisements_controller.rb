@@ -11,6 +11,12 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new
   end
 
+  def create
+    @advertisement = Advertisement.new
+    @advertisement.update_attributes( params.require(:advertisement).permit(:title, :copy, :price))
+
+  end
+
   def edit
     @advertisement = Advertisement.new
 

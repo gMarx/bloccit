@@ -1,9 +1,9 @@
 <%= form_for topic do |f| %>
-  <% if post.errors.any? %>
+  <% if topic.errors.any? %>
     <div class="alert alert-danger">
-      <h4><%= pluralize(post.errors.count), 'error' %></h4>
+      <h4><%= pluralize(topic.errors.count, 'error') %></h4>
       <ul>
-        <% post.errors.full_messages.each do |msg| %>
+        <% topic.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
