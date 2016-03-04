@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.new( params.require(:user).permit(:name, :email, :password, :password_confirmation) )
+
   end
 
   def create
@@ -12,6 +13,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes( params.require(:user).permit(:name, :email, :password, :password_confirmation))
       flash[:notice] = "Welcome to Bloccit #{@user.name}!"
+      create_session(@user)
       redirect_to root_path
     else
       flash.now[:alert] = 'There was an error creating your account. Please try again.'
