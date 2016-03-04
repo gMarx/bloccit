@@ -42,7 +42,7 @@ RSpec.describe SessionsController, :type => :controller do
     end
   end
 
-  describe 'DEELETE session/id' do
+  describe 'DELETE session/id' do
     it 'render the #welcome view' do
       delete :destroy, id: my_user.id
       expect(response).to redirect_to root_path
