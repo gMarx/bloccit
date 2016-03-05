@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :posts, dependent: :destroy
+
   before_save { self.email = email.downcase }
   before_save :format_name
 
