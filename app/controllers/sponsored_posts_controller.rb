@@ -29,7 +29,7 @@ class SponsoredPostsController < ApplicationController
     @sponsored_post = SponsoredPost.find(params[:id])
 
     if @sponsored_post.update_attributes( params.require(:sponsored_post).permit(:title, :body, :price))
-      flash[:notice] = 'SponsoredPost was saved.'
+      flash[:notice] = 'Sponsored Post was saved.'
       redirect_to [@sponsored_post.topic, @sponsored_post]
     else
       flash.now[:alert] = 'There was an error saving the Sponsored Post. Please try again.'

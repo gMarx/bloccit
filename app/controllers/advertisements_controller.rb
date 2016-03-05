@@ -12,9 +12,14 @@ class AdvertisementsController < ApplicationController
   end
 
   def create
-    @advertisement = Advertisement.new
-    @advertisement.update_attributes( params.require(:advertisement).permit(:title, :copy, :price))
+    @advertisement = Advertisement.create( params.require(:advertisement).permit(:title, :copy, :price) )
 
+    if @advertisement.save
+      redirect_to @advertisement, notice: 'Advertisement was saved successfully.'
+    else
+      flash.now[:alert] = 'Error creating topic. Please try again.'
+      render :new
+    end
   end
 
   def edit

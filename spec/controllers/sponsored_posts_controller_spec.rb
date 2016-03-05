@@ -83,10 +83,10 @@ RSpec.describe SponsoredPostsController, :type => :controller do
       new_body = RandomData.random_paragraph
       new_price = rand(25..55)
 
-      put :update, topic_id: my_topic.id, id: sponsored_post.id, post: {title: new_title, body: new_body, price: new_price}
+      put :update, topic_id: my_topic.id, id: sponsored_post.id, sponsored_post: {title: new_title, body: new_body, price: new_price}
 
       updated_post = assigns(:sponsored_post)
-      # expect(updated_post.id).to eq(sponsored_post.id)
+      expect(updated_post.id).to eq(sponsored_post.id)
       expect(updated_post.title).to eq(new_title)
       expect(updated_post.body).to eq(new_body)
       expect(updated_post.price).to eq(new_price)
@@ -97,7 +97,7 @@ RSpec.describe SponsoredPostsController, :type => :controller do
       new_body = RandomData.random_paragraph
       new_price = rand(25..55)
 
-      put :update, topic_id: my_topic.id, id: sponsored_post.id, post: {title: new_title, body: new_body, price: new_price}
+      put :update, topic_id: my_topic.id, id: sponsored_post.id, sponsored_post: {title: new_title, body: new_body, price: new_price}
       expect(response).to redirect_to [my_topic, sponsored_post]
     end
   end
