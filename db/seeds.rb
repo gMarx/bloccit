@@ -1,6 +1,18 @@
 require 'random_data'
 
+####################################################
+# create Users
+5.times do
+  User.create!(
+    name:   RandomData.random_name,
+    email:  RandomData.random_email,
+    password: RandomData.random_sentence
+  )
+end
 
+users = User.all
+
+####################################################
 # Create Topics
 15.times do
   Topic.create!(
@@ -29,9 +41,10 @@ sponsored_posts = SponsoredPost.all
 # Create Posts
 50.times do
   Post.create!(
+    user: users.sample,
+    topic: topics.sample,
     title: RandomData.random_sentence,
-    body: RandomData.random_paragraph,
-    topic: topics.sample
+    body: RandomData.random_paragraph
   )
 end
 
@@ -45,6 +58,12 @@ posts = Post.all
     body: RandomData.random_paragraph
   )
 end
+
+user = User.first
+user.update_attributes!(
+  email: 'gm@gmail.com',
+  password: '123456'
+)
 
 Post.find_or_create_by(
   title: 'Hakuna matata',
@@ -81,6 +100,7 @@ end
 ####################################################
 puts 'Seed finished'
 puts "#{Topic.count} Topics created."
+puts "#{User.count} Users created."
 puts "#{SponsoredPost.count} Sponsored Posts created."
 puts "#{Question.count} questions created."
 puts "#{Post.count} posts created."
