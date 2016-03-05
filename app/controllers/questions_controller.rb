@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.create( params.require(:question).permit(:title, :body, :resolved) )
+    @question = Question.create( question_params )
 
     if @question.save
       flash[:notice] = 'Your Question has been saved.'
@@ -29,8 +29,9 @@ class QuestionsController < ApplicationController
 
   def update
     @question = Question.find(params[:id])
+    @question.update_attributes( question_params )
 
-    if @question.update_attributes(params.require(:question).permit(:title, :body, :resolved))
+    if @question.save
       flash[:notice] = 'Question was updated'
       redirect_to @question
     else
@@ -48,6 +49,11 @@ class QuestionsController < ApplicationController
     else
       flash.now[:alert] = 'We had trouble deleting your question. Please try again.'
     end
+  end
 
+  private
+
+  def question_params
+    params.require(:question).permit(:title, :body, :resolved)
   end
 end

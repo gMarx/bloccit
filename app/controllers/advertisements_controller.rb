@@ -12,7 +12,7 @@ class AdvertisementsController < ApplicationController
   end
 
   def create
-    @advertisement = Advertisement.create( params.require(:advertisement).permit(:title, :copy, :price) )
+    @advertisement = Advertisement.create( advertisement_params )
 
     if @advertisement.save
       redirect_to @advertisement, notice: 'Advertisement was saved successfully.'
@@ -24,10 +24,7 @@ class AdvertisementsController < ApplicationController
 
   def edit
     @advertisement = Advertisement.new
-
-    @advertisement.title = params[:advertisement][:title]
-    @advertisement.copy = params[:advertisement][:copy]
-    @advertisement.price = params[:advertisement][:price]
+    @advertisement.update_attributes( advertisement_params )
 
     if @advertisement.save
       flash[:notice] = 'Advertisement saved'
@@ -36,5 +33,11 @@ class AdvertisementsController < ApplicationController
       flash.now[:alert] = 'There was an error saving the post. Please try again.'
       render :new
     end
+  end
+
+  private
+  
+  def advertisement_params
+    params.require(:advertisement).permit(:title, :copy, :price)
   end
 end

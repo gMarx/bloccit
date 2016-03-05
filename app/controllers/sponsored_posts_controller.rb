@@ -10,7 +10,7 @@ class SponsoredPostsController < ApplicationController
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @sponsored_post = @topic.sponsored_posts.build( params.require(:sponsored_post).permit(:title, :body, :price) )
+    @sponsored_post = @topic.sponsored_posts.build( sponsored_params )
 
     if @sponsored_post.save
       flash[:notice] = 'SponsoredPost was saved.'
@@ -27,8 +27,9 @@ class SponsoredPostsController < ApplicationController
 
   def update
     @sponsored_post = SponsoredPost.find(params[:id])
+    @sponsored_post.update_attributes( sponsored_params )
 
-    if @sponsored_post.update_attributes( params.require(:sponsored_post).permit(:title, :body, :price))
+    if @sponsored_post.save
       flash[:notice] = 'Sponsored Post was saved.'
       redirect_to [@sponsored_post.topic, @sponsored_post]
     else
@@ -39,6 +40,7 @@ class SponsoredPostsController < ApplicationController
 
   def destroy
     @sponsored_post = SponsoredPost.find(params[:id])
+
     if @sponsored_post.destroy
       flash[:notice] = "'#{@sponsored_post.title}' successfully destroyed"
       redirect_to @sponsored_post.topic
@@ -46,5 +48,10 @@ class SponsoredPostsController < ApplicationController
       flash[:alert] = 'There was an error destroying your sponsored post'
       render :show
     end
+  end
+
+  private
+  def sponsored_params
+    params.require(:sponsored_post).permit(:title, :body, :price)
   end
 end

@@ -12,8 +12,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.create( params.require(:topic).permit(:name, :description, :public) )
-
+    @topic = Topic.create( topic_params )
 
     if @topic.save
       redirect_to @topic, notice: 'Topic was saved successfully.'
@@ -29,8 +28,9 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find(params[:id])
+    @topic.update_attributes( topic_params )
 
-    if @topic.update_attributes( params.require(:topic).permit(:name, :description, :public) )
+    if @topic.save
       flash[:notice] = 'Topic was updated successfully.'
       redirect_to @topic
     else
@@ -49,5 +49,11 @@ class TopicsController < ApplicationController
       flash.now[:alert] = 'There was an error deleting the topic'
       render :show
     end
+  end
+
+  private
+
+  def topic_params
+    params.require(:topic).permit(:name, :description, :public)
   end
 end

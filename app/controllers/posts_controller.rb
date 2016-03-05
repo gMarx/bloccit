@@ -7,14 +7,13 @@ class PostsController < ApplicationController
   end
 
   def new
-    # @user = User.find(params[:user_id])
     @topic = Topic.find(params[:topic_id])
     @post = Post.new
   end
 
   def create
     @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.build( params.require(:post).permit(:title, :body) )
+    @post = @topic.posts.build( post_params )
     @post.user = current_user
 
     if @post.save
@@ -31,10 +30,10 @@ class PostsController < ApplicationController
   end
 
   def update
-
     @post = Post.find(params[:id])
+    @post.update_attributes( post_params )
 
-    if @post.update_attributes( params.require(:post).permit(:title, :body) )
+    if @post.save
       flash[:notice] = 'Post was updated'
       redirect_to [@post.topic, @post]
     else
@@ -53,5 +52,11 @@ class PostsController < ApplicationController
       flash[:alert] = 'There was an error destroying the post. Please try again.'
       render :show
     end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
