@@ -36,7 +36,7 @@ class AdvertisementsController < ApplicationController
   end
 
   private
-  
+
   def advertisement_params
     params.require(:advertisement).permit(:title, :copy, :price)
   end
