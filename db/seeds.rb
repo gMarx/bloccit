@@ -59,10 +59,17 @@ posts = Post.all
   )
 end
 
-user = User.first
-user.update_attributes!(
-  email: 'gm@gmail.com',
-  password: '123456'
+admin = User.create!(
+  name: 'Admin user',
+  email: 'admin@example.com',
+  password: 'helloworld',
+  role: 'admin'
+)
+
+member = User.create!(
+  name: 'Member user',
+  email: 'member@example.com',
+  password: 'helloworld'
 )
 
 Post.find_or_create_by(
