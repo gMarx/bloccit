@@ -6,7 +6,7 @@ require 'random_data'
   User.create!(
     name:   RandomData.random_name,
     email:  RandomData.random_email,
-    password: RandomData.random_sentence
+    password: RandomData.random_word
   )
 end
 
@@ -60,10 +60,17 @@ posts = Post.all
 end
 
 admin = User.create!(
-  name: 'Admin user',
+  name: 'Moderator user',
   email: 'admin@example.com',
   password: 'helloworld',
   role: 'admin'
+)
+
+moderator = User.create!(
+  name: 'Admin user',
+  email: 'moderator@example.com',
+  password: 'helloworld',
+  role: 'moderator'
 )
 
 member = User.create!(

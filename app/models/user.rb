@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  enum role: [:member, :admin]
+  enum role: [:member, :admin, :moderator]
 
   def format_name
     self.name = name.split.map { |name| name.capitalize }.join(' ') if name
