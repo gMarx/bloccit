@@ -6,7 +6,7 @@ require 'random_data'
   User.create!(
     name:   RandomData.random_name,
     email:  RandomData.random_email,
-    password: RandomData.random_sentence
+    password: RandomData.random_word + '123'
   )
 end
 
@@ -54,6 +54,7 @@ posts = Post.all
 ####################################################
 100.times do
   Comment.create!(
+    user: users.sample,
     post: posts.sample,
     body: RandomData.random_paragraph
   )
