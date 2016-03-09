@@ -9,6 +9,7 @@
       <%= render partial: 'labels/list', locals: { labels: @topic.labels } %>
       <br />
       <%= @topic.description %>
+      <%= render 'comments/comment', locals: { commented: @topic } %>
     </p>
     <% @topic.posts.each do |post| %>
     <div class="media">
@@ -16,7 +17,7 @@
         <h4 class="media-heading">
           <%= link_to post.title, topic_post_path(@topic, post) %>
           <%= render partial: 'labels/list', locals: { labels: post.labels } %>
-          <%= render @topic.comments %>
+          <%= render 'comments/comment', locals: { commented: post } %>
         </h4>
         <small>
           submitted <%= time_ago_in_words(post.created_at) %> ago  by <%= post.user.name %> <br>
