@@ -96,7 +96,7 @@ RSpec.describe Post, :type => :model do
       # this is off by a fraction of a second, the difference between running the two lines of code
       it 'updates the rank when a post is created' do
         my_post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
-        expect(my_post.rank).to eq (1 + (post.created_at - Time.new(1970,1,1)) / 1.day.seconds)
+        expect(my_post.rank.to_int).to eq (1 + (post.created_at - Time.new(1970,1,1)) / 1.day.seconds).to_int
       end
     end
 end
