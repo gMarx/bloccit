@@ -22,15 +22,20 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    comment = @post.comments.find(params[:id])
+    if params[:post_id]
+      comment = Comment.find(params[:id])
+    elsif params[:topic_id]
+      comment = Comment.find(params[:id])
+    end
+
+    comment.user = current_user
 
     if comment.destroy
       flash[:notice] = 'Comment deleted'
-      redirect_to [@post.topic, @post]
+      redirect_to :back
     else
       flash[:alert] = 'Comment could not be deleted. Please try again'
-      redirect_to [@post.topic, @post]
+      redirect_to :back
     end
 
   end
