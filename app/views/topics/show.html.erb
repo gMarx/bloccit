@@ -9,6 +9,9 @@
       <%= render partial: 'labels/list', locals: { labels: @topic.labels } %>
       <br />
       <%= @topic.description %>
+
+      <%= render @topic.comments %>
+
     </p>
     <% @topic.posts.each do |post| %>
     <div class="media">
