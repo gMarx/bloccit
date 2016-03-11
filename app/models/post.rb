@@ -1,10 +1,12 @@
 class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
+
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
+  has_many :favorites, dependent: :destroy
 
   default_scope { order('rank DESC') }
 

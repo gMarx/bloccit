@@ -35,9 +35,14 @@
     <% end %>
     <div class="col-md-4">
     <h3>
-      <%= pluralize(@post.up_votes, 'up vote') %>
-      <%= pluralize(@post.down_votes, 'down vote') %>
+      <small>
+        <%= pluralize(@post.up_votes, 'up vote') %>
+        <%= pluralize(@post.down_votes, 'down vote') %>
+      </small>
     </h3>
+      <% if current_user %>
+        <%= render partial: 'favorites/favorite', locals: {post: @post} %>
+      <% end %>
     </div>
   </div>
 </div>
