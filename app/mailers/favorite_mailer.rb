@@ -21,6 +21,6 @@ class FavoriteMailer < ApplicationMailer
     @user = post.user
     @post = post
 
-    mail(to: user.email, subject: "Post created & Favorited on #{post.title}")
+    mail(to: @user.email, subject: "Post created & Favorited on #{post.title}")
   end
 end

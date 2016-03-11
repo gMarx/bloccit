@@ -39,8 +39,6 @@ class Post < ActiveRecord::Base
 
   def create_favorite
     Favorite.create!(post: self, user: self.user)
-
-    # send emails part
     FavoriteMailer.new_post(self).deliver_now
   end
 
