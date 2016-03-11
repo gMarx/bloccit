@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<h1>New Post created named "<%= @post.title %>" and Favorited</h1>
+<small>
+  By: <%= @post.user.name %>
+</small>
+<p>
+  <%= @post.body %>
+</p>
+<p>
+  Please note, you shall receive more email updates as people comment on your post.
+</p>
+<p>
+  <%= link_to 'View Post on site', topic_post_url(@post.topic, @post) %>
+</p>
+</body>
+</html>
