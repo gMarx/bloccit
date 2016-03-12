@@ -3,7 +3,7 @@ require 'random_data'
 
 RSpec.describe SponsoredPostsController, :type => :controller do
 
-  let(:my_topic) { Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)}
+  let(:my_topic) { create(:topic) }
   let(:sponsored_post) {my_topic.sponsored_posts.create!(title: RandomData.random_word, body: RandomData.random_paragraph, price: rand(5..50))}
 
   describe 'GET show' do
