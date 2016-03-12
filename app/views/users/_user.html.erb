@@ -13,3 +13,28 @@
 <% end %>
 
 
+<% if user.favorites.length > 0 %>
+  <h2>Favorites</h2>
+  <% user.favorites.each do |favorite| %>
+    <div class="media">
+      <!--number votes-->
+      <div class="vote-arrows pull-left"><strong><%= favorite.post.points %></strong></div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to favorite.post.title, topic_post_path(favorite.post.topic, favorite.post) %>
+        </h4>
+        <!--author's gravatar-->
+        <div class="pull-left">
+          <%= image_tag favorite.post.user.avatar_url(48), class: 'gravatar' %>
+        </div>
+        <!--number comments-->
+        <small>
+          <%= favorite.post.comments.count %> Comments
+        </small>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <h4><%= user.name %> has not favorited any posts yet.</h4>
+  <%= render partial: user.favorites, locals: {user: user, post: user.favorites.first.post} %>
+<% end %>
