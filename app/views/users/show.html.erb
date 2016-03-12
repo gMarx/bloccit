@@ -19,8 +19,4 @@
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
-
-<h2>Comments</h2>
-<%= render @user.comments %>
+<%= render partial: 'user', locals: { user: @user } %>

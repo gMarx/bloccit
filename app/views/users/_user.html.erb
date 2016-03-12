@@ -1,0 +1,15 @@
+<% if user.posts.length > 0 %>
+  <h2>Posts</h2>
+  <%= render user.posts %>
+<% else %>
+  <h4>"{user.name} has not submitted any posts yet."</h4>
+<% end %>
+
+<% if user.comments.length > 0 %>
+  <h2>Comments</h2>
+  <%= render user.comments %>
+<% else %>
+  <h4><%= user.name %> has not submitted any comments yet.</h4>
+<% end %>
+
+
