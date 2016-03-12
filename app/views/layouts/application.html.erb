@@ -4,7 +4,7 @@
   <title>Bloccit</title>
   <!--this is for scaling the page on mobile devices-->
   <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -15,14 +15,18 @@
       <li><%= link_to 'Topics', topics_path %></li>
       <li><%= link_to 'About', about_path %></li>
 
-      <% if current_user %>
-        <li class="pull-right"><%= link_to session_path(current_user), method: :delete do %>
-            <%= current_user.name %> - Sign Out
-            <% end %></li>
-      <% else %>
-        <li class="pull-right"><%= link_to 'Sign In', new_session_path %></li>
-        <li class="pull-right"><%= link_to 'Sign Up', new_user_path %></li>
-      <% end %>
+      <li class="pull-right">
+        <% if current_user %>
+          <%= image_tag current_user.avatar_url(48), class: 'gravatar' %>
+          <div class="pull-right">
+            <%= link_to current_user.name, user_path(current_user) %> <br/>
+            <%= link_to 'Sign Out', session_path(current_user), method: :delete %>
+          </div>
+        <% else %>
+          <%= link_to 'Sign In', new_session_path %></div>
+          <li class="pull-right"><%= link_to 'Sign Up', new_user_path %>
+        <% end %>
+      </li>
 
       <li><%= link_to 'Contact', contact_path %></li>
       <li><%= link_to 'Faq', faq_path %></li>
@@ -49,8 +53,5 @@
 
     <%= yield %>
   </div>
-
-
-
 </body>
 </html>
