@@ -10,7 +10,7 @@ RSpec.describe Topic, :type => :model do
 
   it { is_expected.to validate_presence_of(:name) }
   it { is_expected.to validate_presence_of(:description) }
-  it { is_expected.to validate_presence_of(:public) }
+  # it { is_expected.to validate_presence_of(:public) }
 
   it { is_expected.to validate_length_of(:name).is_at_least(5)}
   it { is_expected.to validate_length_of(:description).is_at_least(15)}
@@ -47,6 +47,12 @@ RSpec.describe Topic, :type => :model do
 
       it 'returns only public topics if user is nil' do
         expect(Topic.visible_to(nil)).to eq([@public_topic])
+      end
+    end
+
+    describe 'publicly_viewable' do
+      it 'returns only public topics' do
+        expect(Topic.publicly_viewable).to eq([@public_topic])
       end
     end
   end
