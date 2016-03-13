@@ -1,7 +1,7 @@
 require 'random_data'
 
 FactoryGirl.define do
-  pw = RandomData.random_word
+  pw = RandomData.random_word + '12345'
 
   factory :user do
     name RandomData.random_name
