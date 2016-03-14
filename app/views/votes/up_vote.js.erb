@@ -1,0 +1,19 @@
+//if up_vote
+//  post.points = post.points + 1
+//end
+//$(".js-votes").html("<strong><% escape_javascript(render(@up_vote)) %></strong>");
+<% if @vote.upvoted? %>
+  $('.js-votes').html("<strong><%= post.points %></strong>");
+<% end %>
+//need to update the post.points by 1 here
+// it's possible to do this by have the entire `votes/voter` section re-rendered, which only includes the up and down arrows + the count.
+//If this can be done w/ only re-render of the count, that would be ideal
+
+//using class of 'js-votes' to signal teh div to replace in this re-rendering.
+//1st idea is have the entire partial re-render, so place this div w/ corresponding class around all calls to render the voter partial
+// -- not DRY, should go in the voter partial?
+
+
+
+//idea
+//use exactly what's in the partial - it will re-render it, so the calculation will be done.
