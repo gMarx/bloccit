@@ -23,6 +23,14 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def create
+    user = User.new(user_params)
+
+    if user.valid?
+      user.save!
+      render json: user.to_json, status: 201
+    else
+      render json: {error: 'User is invalid', status: 400}, status: 400
+    end
   end
 
   private
@@ -31,5 +39,3 @@ class Api::V1::UsersController < Api::V1::BaseController
     params.require(:user).permit(:name, :email, :password, :role)
   end
 end
-
-# curl -H "Content-type: application/json" -H "Authorization: Token /HfHktDdsLK+ro8mEWKbXnOpLMM+E6jkkmOyOB9PoVzNW4zIt/y9hkY1oEmANrUAn8LqdFFpN+fDxyK6wax+eA=="" -X PUT -d '{"user": {"name":"Billy Bob", "password":"helloworld"}}' http://localhost:3000/api/v1/users/1/
